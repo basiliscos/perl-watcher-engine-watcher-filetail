@@ -1,4 +1,5 @@
 {{$NEXT}}
+    [Fake release] Set correct initial version
 
 0.01      2013-08-24 19:45:06 Europe/Minsk
     Initial version, separated from App::PerlWatcher::Engine
