@@ -1,0 +1,12 @@
+Changes
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README
+README.md
+TODO
+dist.ini
+lib/App/PerlWatcher/Watcher/FileTail.pm
+t/020-filetail.t
+t/021-filetail-no-file.t

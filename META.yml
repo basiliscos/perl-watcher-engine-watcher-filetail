@@ -1,0 +1,26 @@
+---
+abstract: 'Inotify-based file tail watcher'
+author:
+  - 'Ivan Baidakou <dmol@gmx.com>'
+build_requires:
+  Test::More: 0.98
+configure_requires:
+  ExtUtils::MakeMaker: 6.30
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.131560'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: App-PerlWatcher-Watcher-FileTail
+requires:
+  AnyEvent: 7.04
+  App::PerlWatcher::Engine: 0.14
+  Devel::Comments: v1.1.4
+  File::ReadBackwards: 1.05
+  Linux::Inotify2: 1.22
+  List::MoreUtils: 0.33
+  Moo: 1.003000
+  Path::Class: 0.32
+  aliased: 0.31
+version: 0.01
