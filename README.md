@@ -1,6 +1,8 @@
 perl-watcher-engine-watcher-filetail
 ====================================
 
+![Build status](https://api.travis-ci.org/basiliscos/perl-watcher-engine-watcher-filetail.png "Build status")
+
 Inotify-based file tail watcher allows you to track changes (e.g. log file addons)
 on the particular file on filesystem.
 
