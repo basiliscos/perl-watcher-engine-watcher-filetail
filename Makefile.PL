@@ -2,9 +2,9 @@
 use strict;
 use warnings;
 
+use 5.012;
 
-
-use ExtUtils::MakeMaker 6.30;
+use ExtUtils::MakeMaker 6.72;
 
 
 
@@ -13,7 +13,7 @@ my %WriteMakefileArgs = (
   "AUTHOR" => "Ivan Baidakou <dmol\@gmx.com>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
-    "ExtUtils::MakeMaker" => "6.30"
+    "ExtUtils::MakeMaker" => "6.72"
   },
   "DISTNAME" => "App-PerlWatcher-Watcher-FileTail",
   "EXE_FILES" => [],
