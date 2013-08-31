@@ -1,4 +1,5 @@
 {{$NEXT}}
+    Update in accordance with latest version of A::P::Engine (build_watcher_guard)
 
 0.15      2013-08-24 20:02:05 Europe/Minsk
     [Fake release] Set correct initial version

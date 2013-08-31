@@ -71,6 +71,18 @@ sub _build_inotify {
     return $inotify;
 }
 
+sub build_watcher_guard {
+    my $self = shift;
+    return AnyEvent->io(
+        fh   => $self->inotify->fileno,
+        poll => 'r',
+        cb   => sub {
+            $self->inotify->poll
+              if $self->active;
+        },
+    );
+}
+
 sub start {
     my ($self, $callback) = @_;
     $self->callback($callback) if $callback;
@@ -90,6 +102,7 @@ sub start {
 
     eval {
         $self->_try_start;
+        $self->watcher_guard( $self->build_watcher_guard );
     };
     $fail_start->($@) if($@);
 }
@@ -126,15 +139,6 @@ sub _try_start {
                 },
             );
         }
-    );
-
-    $self->{_w} = AnyEvent->io(
-        fh   => $self->inotify->fileno,
-        poll => 'r',
-        cb   => sub {
-            $self->inotify->poll
-              if defined( $self->{_w} );
-        },
     );
 }
 
