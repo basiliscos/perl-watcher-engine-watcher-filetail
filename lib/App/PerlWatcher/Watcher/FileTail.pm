@@ -23,6 +23,7 @@ use App::PerlWatcher::Watcher;
 
 
 
+
 has 'file'          => ( is => 'ro', required => 1);
 
 
@@ -188,19 +189,21 @@ version 0.15
 
 =head1 SYNOPSIS
 
-use the following config for Engine:
+Use the following config for Engine to monitor file changes online:
 
         {
-            class => 'App::PerlWatcher::Watcher::Ping',
+            class => 'App::PerlWatcher::Watcher::FileTail',
             config => {
-                host    =>  'google.com',
-                frequency   =>  10,
-                on => { fail => { 5 => 'alert' } },
+                file            =>  '/var/log/messages',
+                lines_number    =>  10,
+                filter          => sub { $_ !~ /\scron/ },
             },
         },
- # if the port was defined it does TCP-knock to that port.
- # TCP-knock is required for some hosts, that don't answer to
- # ICMP echo requests, e.g. notorious microsoft.com :)
+
+=head1 DESCRIPTION
+
+The more detailed description of PerlWatcher application can be found here:
+L<https://github.com/basiliscos/perl-watcher>.
 
 =head1 ATTRIBUTES
 
