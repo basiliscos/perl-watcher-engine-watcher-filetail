@@ -18,6 +18,27 @@ use App::PerlWatcher::Levels;
 use aliased 'App::PerlWatcher::Status';
 use App::PerlWatcher::Watcher;
 
+=head1 SYNOPSIS
+
+Use the following config for Engine to monitor file changes online:
+
+        {
+            class => 'App::PerlWatcher::Watcher::FileTail',
+            config => {
+                file            =>  '/var/log/messages',
+                lines_number    =>  10,
+                filter          => sub { $_ !~ /\scron/ },
+            },
+        },
+=cut
+
+=head1 DESCRIPTION
+
+The more detailed description of PerlWatcher application can be found here:
+L<https://github.com/basiliscos/perl-watcher>.
+
+=cut
+
 =attr file
 
 The file to be watched.
