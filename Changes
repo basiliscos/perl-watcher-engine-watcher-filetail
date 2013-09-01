@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.16      2013-09-01 13:17:53 Europe/Minsk
     Add documentation and link to A::P homepage
     Update in accordance with latest version of A::P::Engine (build_watcher_guard)
 
