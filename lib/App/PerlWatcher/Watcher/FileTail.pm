@@ -22,6 +22,7 @@ use aliased 'App::PerlWatcher::Status';
 use App::PerlWatcher::Watcher;
 
 
+
 has 'file'          => ( is => 'ro', required => 1);
 
 
@@ -184,6 +185,22 @@ App::PerlWatcher::Watcher::FileTail - Watches for changes file and outputs new a
 =head1 VERSION
 
 version 0.15
+
+=head1 SYNOPSIS
+
+use the following config for Engine:
+
+        {
+            class => 'App::PerlWatcher::Watcher::Ping',
+            config => {
+                host    =>  'google.com',
+                frequency   =>  10,
+                on => { fail => { 5 => 'alert' } },
+            },
+        },
+ # if the port was defined it does TCP-knock to that port.
+ # TCP-knock is required for some hosts, that don't answer to
+ # ICMP echo requests, e.g. notorious microsoft.com :)
 
 =head1 ATTRIBUTES
 
