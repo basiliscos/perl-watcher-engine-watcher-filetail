@@ -1,6 +1,6 @@
 package App::PerlWatcher::Watcher::FileTail;
 {
-  $App::PerlWatcher::Watcher::FileTail::VERSION = '0.15';
+  $App::PerlWatcher::Watcher::FileTail::VERSION = '0.16';
 }
 # ABSTRACT: Watches for changes file and outputs new added lines (a-la 'tail -f')
 
@@ -185,7 +185,7 @@ App::PerlWatcher::Watcher::FileTail - Watches for changes file and outputs new a
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 
