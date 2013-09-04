@@ -87,12 +87,13 @@ my $watcher = App::PerlWatcher::Watcher::FileTail->new(
     lines_number    => 5,
     filter          => $filter,
     engine_config   => {},
+    callback        => $callback_handler,
 );
 
 ok defined($watcher), "watcher was created";
 like "$watcher", qr/FileTail/, "has overloaded toString"; 
 
-$watcher->start($callback_handler);
+$watcher->start;
 $end_var->recv;
 
 is $callback_invocations, scalar @$scenario, "correct number of callback invocations";
