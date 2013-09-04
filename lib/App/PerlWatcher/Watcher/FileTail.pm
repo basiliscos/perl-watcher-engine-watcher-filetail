@@ -60,7 +60,8 @@ sub build_watcher_guard {
 
 sub start {
     my ($self, $callback) = @_;
-    $self->callback($callback) if $callback;
+
+    return unless($self->memory->active);
 
     my $fail_start = sub {
         my $msg = shift;

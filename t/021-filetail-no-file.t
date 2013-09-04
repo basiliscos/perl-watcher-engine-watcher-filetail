@@ -24,10 +24,11 @@ my $watcher = App::PerlWatcher::Watcher::FileTail->new(
     file            => $filename,
     lines_number    => 5,
     engine_config   => {},
+    callback        => $callback_handler,
 );
 
 ok defined($watcher), "watcher was created";
-$watcher->start($callback_handler);
+$watcher->start;
 is $received_status->level, LEVEL_ANY;
 
 done_testing;
