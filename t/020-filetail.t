@@ -23,6 +23,7 @@ my ($s1, $s2);
 my $timer;
 
 my $marker = "MarkeR";
+my $watcher;
 
 my $validate = sub {
     my $items = shift;
@@ -30,7 +31,7 @@ my $validate = sub {
 };
 
 my $scenario = [
-    #1 
+    #1
     {
         res =>  sub {
             my $status = shift;
@@ -59,17 +60,25 @@ my $scenario = [
             };
         },
     },
-    
+
 ];
 
 my $callback_invocations = 0;
+my $poll_started = 0;
+my $poll_callback = sub {
+    my $w = shift;
+    is "$w", "$watcher",  "watcher arg is passed to poll_callback";
+    $poll_started = 1;
+};
 my $callback_handler = sub {
-    return $scenario->[$callback_invocations++]->{res}->(@_);
+    ok $poll_started, "poll callback has been invokeed before main callback";
+    $scenario->[$callback_invocations++]->{res}->(@_);
+    $poll_started = 0;
 };
 
 my $tmpdir = tempdir( CLEANUP => 1 );
 $filename = "$tmpdir/sample.log";
-open($file, ">", $filename) 
+open($file, ">", $filename)
     or croak("can't open file $filename: $!");
 $file->autoflush;
 say $file "$marker initial line";
@@ -82,16 +91,17 @@ ok $filter->(local $_ = "$marker");
 ok !$filter->(local $_ = "empty");
 ok !$filter->(local $_ = "Z");
 
-my $watcher = App::PerlWatcher::Watcher::FileTail->new(
-    file            => $filename, 
+$watcher = App::PerlWatcher::Watcher::FileTail->new(
+    file            => $filename,
     lines_number    => 5,
     filter          => $filter,
     engine_config   => {},
     callback        => $callback_handler,
+    poll_callback   => $poll_callback,
 );
 
 ok defined($watcher), "watcher was created";
-like "$watcher", qr/FileTail/, "has overloaded toString"; 
+like "$watcher", qr/FileTail/, "has overloaded toString";
 
 $watcher->start;
 $end_var->recv;

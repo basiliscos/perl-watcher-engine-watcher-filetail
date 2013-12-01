@@ -15,7 +15,7 @@ meta-spec:
 name: App-PerlWatcher-Watcher-FileTail
 requires:
   AnyEvent: 7.04
-  App::PerlWatcher::Engine: 0.15
+  App::PerlWatcher::Engine: 0.18
   Devel::Comments: v1.1.4
   File::ReadBackwards: 1.05
   Linux::Inotify2: 1.22
@@ -24,4 +24,4 @@ requires:
   Path::Class: 0.32
   aliased: 0.31
   perl: 5.012
-version: 0.17
+version: 0.18

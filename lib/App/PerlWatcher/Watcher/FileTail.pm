@@ -1,6 +1,6 @@
 package App::PerlWatcher::Watcher::FileTail;
 {
-  $App::PerlWatcher::Watcher::FileTail::VERSION = '0.17';
+  $App::PerlWatcher::Watcher::FileTail::VERSION = '0.18';
 }
 # ABSTRACT: Watches for changes file and outputs new added lines (a-la 'tail -f')
 
@@ -65,6 +65,7 @@ sub start {
 
     my $fail_start = sub {
         my $msg = shift;
+        $self->poll_callback->($self);
         $self->callback->(
             Status->new(
                 watcher     => $self,
@@ -150,6 +151,7 @@ sub _trigger_callback {
         description => sub { $self->description },
         items       => sub { \@events },
     );
+    $self->poll_callback->($self);
     $self->callback->($status);
 }
 
@@ -186,7 +188,7 @@ App::PerlWatcher::Watcher::FileTail - Watches for changes file and outputs new a
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 SYNOPSIS
 
