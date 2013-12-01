@@ -111,6 +111,7 @@ sub start {
 
     my $fail_start = sub {
         my $msg = shift;
+        $self->poll_callback->($self);
         $self->callback->(
             Status->new(
                 watcher     => $self,
@@ -196,6 +197,7 @@ sub _trigger_callback {
         description => sub { $self->description },
         items       => sub { \@events },
     );
+    $self->poll_callback->($self);
     $self->callback->($status);
 }
 
