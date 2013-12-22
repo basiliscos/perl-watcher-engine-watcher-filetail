@@ -7,6 +7,7 @@ use warnings;
 use Devel::Comments;
 use File::Temp qw/ tempdir /;
 use Test::More;
+use Test::Warnings;
 
 use App::PerlWatcher::Levels;
 use App::PerlWatcher::Watcher::FileTail;
