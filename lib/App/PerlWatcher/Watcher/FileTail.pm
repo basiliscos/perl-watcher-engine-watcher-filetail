@@ -1,6 +1,6 @@
 package App::PerlWatcher::Watcher::FileTail;
 {
-  $App::PerlWatcher::Watcher::FileTail::VERSION = '0.18';
+  $App::PerlWatcher::Watcher::FileTail::VERSION = '0.17';
 }
 # ABSTRACT: Watches for changes file and outputs new added lines (a-la 'tail -f')
 
@@ -61,7 +61,7 @@ sub build_watcher_guard {
 sub start {
     my ($self, $callback) = @_;
 
-    return unless($self->memory->active);
+    return unless($self->active);
 
     my $fail_start = sub {
         my $msg = shift;
@@ -188,7 +188,7 @@ App::PerlWatcher::Watcher::FileTail - Watches for changes file and outputs new a
 
 =head1 VERSION
 
-version 0.18
+version 0.17
 
 =head1 SYNOPSIS
 

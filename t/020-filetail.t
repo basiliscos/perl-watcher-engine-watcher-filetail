@@ -10,6 +10,7 @@ use Devel::Comments;
 use File::Basename;
 use File::Temp qw/ tempdir /;
 use Test::More;
+use Test::Warnings;
 
 use App::PerlWatcher::Watcher::FileTail;
 

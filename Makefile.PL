@@ -21,7 +21,7 @@ my %WriteMakefileArgs = (
   "NAME" => "App::PerlWatcher::Watcher::FileTail",
   "PREREQ_PM" => {
     "AnyEvent" => "7.04",
-    "App::PerlWatcher::Engine" => "0.18",
+    "App::PerlWatcher::Engine" => "0.19",
     "Devel::Comments" => "v1.1.4",
     "File::ReadBackwards" => "1.05",
     "Linux::Inotify2" => "1.22",
@@ -31,9 +31,10 @@ my %WriteMakefileArgs = (
     "aliased" => "0.31"
   },
   "TEST_REQUIRES" => {
-    "Test::More" => "0.98"
+    "Test::More" => "0.98",
+    "Test::Warnings" => "0.013"
   },
-  "VERSION" => "0.18",
+  "VERSION" => "0.17",
   "test" => {
     "TESTS" => "t/*.t"
   }
