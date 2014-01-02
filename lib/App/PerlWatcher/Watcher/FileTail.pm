@@ -183,7 +183,7 @@ sub description {
 
 sub _add_item {
     my ($self, $item) = @_;
-    my $events = $self->events; 
+    my $events = $self->events;
     if (! $self->reverse) {
         push @$events, $item;
         shift @$events if @$events > $self->lines_number;
@@ -196,10 +196,6 @@ sub _add_item {
 
 sub _add_line {
     my ( $self, $line ) = @_;
-    my ($_add, $_trim) = $self->reverse
-        ? (sub { ...}, sub { ...} )
-        : (sub { push @$_[0], $_[1]; }, sub { shift @$_[0] } )
-        ;
     if ( defined $line ) {
         chomp $line;
         if ( $self->filter->(local $_ = $line) ) {
