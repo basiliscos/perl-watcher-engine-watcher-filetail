@@ -1,4 +1,4 @@
-0.17      2014-01-02 19:00:29 Europe/Minsk
+0.17      2014-01-02 23:53:19 Europe/Minsk
     Added 'reverse' property to FileWatcher to emit lines in reverse 
     order (a-la tail -f behavior)
 

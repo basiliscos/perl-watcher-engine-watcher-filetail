@@ -18,8 +18,6 @@ use App::PerlWatcher::Watcher::FileTail;
 
 my $end_var = AE::cv;
 
-my $poll_callback = sub { };
-
 my $callback_handler = sub {
     my $status = shift;
     my $items = $status->items->();
@@ -46,7 +44,7 @@ my $watcher = App::PerlWatcher::Watcher::FileTail->new(
     lines_number    => 5,
     engine_config   => {},
     callback        => $callback_handler,
-    poll_callback   => $poll_callback,
+    poll_callback   => sub { },
     reverse         => 1,
 );
 
