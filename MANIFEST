@@ -11,3 +11,4 @@ dist.ini
 lib/App/PerlWatcher/Watcher/FileTail.pm
 t/020-filetail.t
 t/021-filetail-no-file.t
+t/022-reverse.t
