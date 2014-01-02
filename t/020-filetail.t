@@ -56,9 +56,7 @@ my $scenario = [
             is @{ $items }, 2, "got 2 items (#2)";
             $validate->($items);
             $s2 = $status;
-            AnyEvent::postpone {
-                    $end_var->send;
-            };
+            AE::postpone { $end_var->send(1) };
         },
     },
 
@@ -105,7 +103,7 @@ ok defined($watcher), "watcher was created";
 like "$watcher", qr/FileTail/, "has overloaded toString";
 
 $watcher->start;
-$end_var->recv;
+ok $end_var->recv, "successful scenarion finish";
 
 is $callback_invocations, scalar @$scenario, "correct number of callback invocations";
 
