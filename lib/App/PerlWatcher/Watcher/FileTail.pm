@@ -84,6 +84,17 @@ All gathered lines
 
 has 'events'        => ( is => 'lazy', default => sub { [] } );
 
+=attr reverse
+
+Emits lines in revers order, like tail -f, i.e. the new ones come
+at the top.
+
+Default value: false
+
+=cut
+
+has 'reverse' => ( is => 'lazy', default => sub{ 0 });
+
 with qw/App::PerlWatcher::Watcher/;
 
 sub _build_inotify {
@@ -170,8 +181,25 @@ sub description {
     return "FileWatcher [" . $self->file . "]";
 }
 
+sub _add_item {
+    my ($self, $item) = @_;
+    my $events = $self->events; 
+    if (! $self->reverse) {
+        push @$events, $item;
+        shift @$events if @$events > $self->lines_number;
+    }
+    else {
+        unshift @$events, $item;
+        pop @$events if @$events > $self->lines_number;
+    }
+}
+
 sub _add_line {
     my ( $self, $line ) = @_;
+    my ($_add, $_trim) = $self->reverse
+        ? (sub { ...}, sub { ...} )
+        : (sub { push @$_[0], $_[1]; }, sub { shift @$_[0] } )
+        ;
     if ( defined $line ) {
         chomp $line;
         if ( $self->filter->(local $_ = $line) ) {
@@ -179,10 +207,7 @@ sub _add_line {
                 content     => $line,
                 timestamp   => 0,
             );
-            # $line
-            my $evens_queue = $self->events;
-            push @$evens_queue, $event_item;
-            shift @$evens_queue if @$evens_queue > $self->lines_number;
+            $self->_add_item($event_item);
             $self->_trigger_callback;
         }
     }

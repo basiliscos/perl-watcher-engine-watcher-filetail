@@ -1,4 +1,8 @@
 {{$NEXT}}
+    Added 'reverse' property to FileWatcher to emit lines in reverse 
+    order (a-la tail -f behavior)
+
+0.17      2013-12-23 01:53:25 Europe/Minsk
     Reflect latest changes in Engine
 
 0.16      2013-09-01 13:17:53 Europe/Minsk
